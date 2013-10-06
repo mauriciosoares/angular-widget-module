@@ -3,19 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Angular Widgets Module</title>
+
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
 	<div ng-controller="widgetsCtrl">
-		<div widget></div>
-		<div widgetcontainer></div>
+		<div ng-repeat="directive in widgetDirectives" widget draggable="true" class="widget" ng-hide="{{directive.hide}}">
+			{{directive.name}}
+		</div>
+
+<!-- 		<div widget class="widget" draggable="true">AngularJS</div>
+		<div widget class="widget" draggable="true">HTML5</div>
+		<div widget class="widget" draggable="true">CSS3</div>
+		<div widget class="widget" draggable="true">Javascript</div> -->
+
+		<div widgetcontainer class="widget-container"></div>
 	</div>
 	
 	<!-- Vendors -->
 	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
 	<!-- AWM -->
 	<script src="js/app.js"></script>
+
+	<!-- Factories -->
+	<script src="js/factories/localstorage.js"></script>
 
 	<!-- Directives -->
 	<script src="js/directives/widget.js"></script>
