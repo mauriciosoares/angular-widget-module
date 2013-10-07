@@ -1,7 +1,39 @@
 AWM.controller('widgetsCtrl', function($scope, localstorage) {
 	var firstLocalStorage = true;
 	$scope.widgets = [];
+	$scope.hover = false;
 
+	// listeners for the drag'n drop (sorry but this was the way i find out to do it)
+	document.addEventListener('dragstart', function() {
+		$scope.hover = false;
+		
+	}, false);
+
+	document.addEventListener('dragenter', function( event ) {
+		if ( event.target.className === 'widget-container' ) {
+			$scope.hover = true;
+			event.target.style.background = 'gray';
+		}
+	}, false);
+
+	document.addEventListener('dragleave', function( event ) {
+		if ( event.target.className === 'widget-container' ) {
+			$scope.hover = false;
+			event.target.style.background = '';
+		}
+	}, false);
+
+	document.addEventListener('dragover', function( event ) {
+		event.preventDefault();
+	}, false);
+
+	document.addEventListener('drop', function( event ) {
+		if ( event.target.className === 'widget-container' ) {
+			event.target.style.background = '';
+		}
+	}, false);
+
+	// some random directives
 	$scope.widgetDirectives = [{
 		name: 'AngularJS'
 	},
@@ -16,11 +48,14 @@ AWM.controller('widgetsCtrl', function($scope, localstorage) {
 	}];
 
 	$scope.addWidget = function(e) {
-		$scope.widgets.push({
-			name: e[0].innerHTML
-		});
+		console.log($scope.hover);
+		if($scope.hover) {
+			$scope.widgets.push({
+				name: e[0].innerHTML
+			});
 
-		$scope.$apply();
+			$scope.$apply();
+		}
 	};
 
 	$scope.removeWidget = function(item) {

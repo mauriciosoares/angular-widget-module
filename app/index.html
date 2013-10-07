@@ -7,9 +7,11 @@
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
 	<div ng-controller="widgetsCtrl">
-		<div ng-repeat="directive in widgetDirectives" widget draggable="true" class="widget">{{directive.name}}</div>
+		<div class="widgets">
+			<div ng-repeat="directive in widgetDirectives" widget draggable="true" class="widget">{{directive.name}}</div>	
+		</div>
+		
 
 <!-- 		<div widget class="widget" draggable="true">AngularJS</div>
 		<div widget class="widget" draggable="true">HTML5</div>

@@ -3,9 +3,7 @@ AWM.directive('widget', function () {
 		restrict: 'A',
 		link: function (scope, elem) {
 			elem.bind('dragend', function(e) {
-				if(e.y > 50) {
-					scope.addWidget(elem);
-				}
+				scope.addWidget(elem);
 			});
 		}
 	};
