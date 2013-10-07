@@ -1,4 +1,5 @@
 AWM.controller('widgetsCtrl', function($scope, localstorage) {
+	var firstLocalStorage = true;
 	$scope.widgets = [];
 
 	$scope.widgetDirectives = [{
@@ -28,6 +29,18 @@ AWM.controller('widgetsCtrl', function($scope, localstorage) {
 	};
 
 	$scope.$watch('widgets', function() {
-		// console.log('teste');
+		if(firstLocalStorage === true) {
+			firstLocalStorage = false;
+			var widgets = localstorage.getAll();
+			if(widgets !== false) {
+				for(var i = 0; i < widgets.length; i++) {
+					$scope.widgets.push({
+						name: widgets[i].name
+					});
+				}
+			}
+		} else {
+			localstorage.update($scope.widgets)	;
+		}
 	}, true);
 });
