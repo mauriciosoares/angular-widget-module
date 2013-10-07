@@ -2,35 +2,22 @@ AWM.controller('widgetsCtrl', function($scope, localstorage) {
 	$scope.widgets = [];
 
 	$scope.widgetDirectives = [{
-		name: 'AngularJS',
-		hide: false
+		name: 'AngularJS'
 	},
 	{
-		name: 'HTML5',
-		hide: false
+		name: 'HTML5'
 	},
 	{
-		name: 'CSS3',
-		hide: false
+		name: 'CSS3'
 	},
 	{
-		name: 'Javascript',
-		hide: false
+		name: 'Javascript'
 	}];
 
 	$scope.addWidget = function(e) {
 		$scope.widgets.push({
 			name: e[0].innerHTML
 		});
-
-		var wDirectivesLength = $scope.widgetDirectives.length;
-
-		for(var i = 0; i <= wDirectivesLength; i++) {
-			console.log($scope.widgetDirectives[i].name);
-			if($scope.widgetDirectives[i].name == e[0].innerHTML) {
-				$scope.widgetDirectives[i].hide = true;
-			}
-		}
 
 		$scope.$apply();
 	};
